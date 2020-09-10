@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.create(params.require(:article).permit(:title, :content))
     if @article.persisted?
-      redirect_to root_path notice: 'Your article was successfully created'
+      redirect_to root_path, notice: 'Your article was successfully created'
     else
       redirect_to new_article_path, notice: 'Error, try again'
     end
