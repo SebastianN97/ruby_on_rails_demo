@@ -20,4 +20,17 @@ class ArticlesController < ApplicationController
       redirect_to new_article_path, notice: 'Error, try again'
     end
   end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :content))
+      redirect_to @article, notice: 'The article was successfully updated'
+    else
+      redirect_to edit_article_path, notice: 'Error, try again'
+    end
+  end
 end
